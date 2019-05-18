@@ -1,3 +1,5 @@
+require 'byebug'
+
 class PolyTreeNode
   attr_reader :value, :parent, :children
   def initialize(value)
@@ -23,13 +25,18 @@ class PolyTreeNode
 
   def remove_child(child_node)
     if child_node.parent.nil? 
-      raise "gave birth to itself"
+      raise "This node gave birth to itself"
     else
       child_node.parent = nil
     end
   end
 
-  # def inspect
-  #   @children.inspect
-  # end
+  def dfs(target)
+    return self if self.value == target
+    return nil if self.children.empty?
+
+    self.children.each do |child|
+      child.dfs(target)
+    end
+  end
 end
