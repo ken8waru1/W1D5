@@ -38,5 +38,7 @@ class PolyTreeNode
     self.children.each do |child|
       child.dfs(target)
     end
+
+    nil
   end
 end
